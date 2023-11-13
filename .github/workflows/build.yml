@@ -31,7 +31,7 @@ jobs:
     - name: Build & install VTK
       run: |
         cd VTK-9.3.0.rc2
-        cmake --build build --target install --parallel
+        cmake --build build --target install
 
     - name: Create & configure build directory
       run: |
