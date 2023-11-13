@@ -1,0 +1,32 @@
+name: build_macos
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  main:
+    runs-on: macos-13
+
+    steps:
+    - uses: actions/checkout@v3
+      name: Checkout code
+
+    - name: Install macOS dependencies
+      run: |
+        brew install vtk
+
+    - name: Create & configure build directory
+      run: |
+        mkdir build
+        cd build
+        cmake $GITHUB_WORKSPACE
+
+    - name: Build
+      run: |
+        cmake --build build --parallel
+
+    - name: Test binary
+      run: |
+        otool -L build/main
