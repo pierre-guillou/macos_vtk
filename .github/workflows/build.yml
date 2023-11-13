@@ -41,3 +41,4 @@ jobs:
     - name: Test binary
       run: |
         otool -L build/main
+        build/main
