@@ -13,19 +13,30 @@ jobs:
     - uses: actions/checkout@v3
       name: Checkout code
 
-    - name: Install macOS dependencies
+    - name: Fetch VTK sources
       run: |
-        brew install vtk
+        curl -OL https://www.vtk.org/files/release/9.3/VTK-9.3.0.rc2.tar.gz
+        tar xzvf VTK-9.3.0.rc2.tar.gz
+
+    - name: Create & configure VTK build directory
+      run: |
+        cd VTK-9.3.0.rc2
+        mkdir build && cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+
+    - name: Build & install VTK
+      run: |
+        cd VTK-9.3.0.rc2
+        cmake --build build --target install --parallel
 
     - name: Create & configure build directory
       run: |
-        mkdir build
-        cd build
-        cmake $GITHUB_WORKSPACE
+        mkdir build && cd build
+        cmake -DCMAKE_BUILD_TYPE=Release $GITHUB_WORKSPACE
 
     - name: Build
       run: |
-        cmake --build build --parallel
+        cmake --build build
 
     - name: Test binary
       run: |
