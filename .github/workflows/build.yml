@@ -22,7 +22,11 @@ jobs:
       run: |
         cd VTK-9.3.0.rc2
         mkdir build && cd build
-        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake \
+        -DCMAKE_INSTALL_RPATH=/usr/local/lib \
+        -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE \
+        -DCMAKE_BUILD_TYPE=Release \
+        ..
 
     - name: Build & install VTK
       run: |
