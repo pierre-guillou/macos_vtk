@@ -67,5 +67,8 @@ int main() {
   data->SetComponentName(0, "");
 
   std::cout << "hello world" << std::endl;
+  std::cout << data->GetName() << std::endl;
+  std::srand(std::time(nullptr));
+  std::cout << get_vtk_filename_suffix(std::rand() % 5) << std::endl;
   return 0;
 }
