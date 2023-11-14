@@ -8,6 +8,7 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(VTK REQUIRED)
+message(STATUS "-- Found VTK: ${VTK_DIR}")
 
 add_executable(main main.cpp)
 
