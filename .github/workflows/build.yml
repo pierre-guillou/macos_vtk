@@ -24,14 +24,14 @@ jobs:
         mkdir build && cd build
         cmake \
         -DCMAKE_INSTALL_PREFIX=$PWD/install \
-        -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE \
         -DCMAKE_BUILD_TYPE=Debug \
         ..
 
     - name: Build & install VTK
       run: |
         cd VTK-9.3.0.rc2
-        cmake --build build --target install --parallel 2
+        cmake --build build --parallel 2
+        cmake --install build
 
     - name: Create & configure build directory
       run: |
