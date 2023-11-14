@@ -23,8 +23,7 @@ jobs:
         cd VTK-9.3.0.rc2
         mkdir build && cd build
         cmake \
-        -DCMAKE_INSTALL_PREFIX=/usr/local/vtk-9.3 \
-        -DCMAKE_INSTALL_RPATH=/usr/local/lib \
+        -DCMAKE_INSTALL_PREFIX=$PWD/install \
         -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE \
         -DCMAKE_BUILD_TYPE=Debug \
         ..
@@ -32,13 +31,13 @@ jobs:
     - name: Build & install VTK
       run: |
         cd VTK-9.3.0.rc2
-        cmake --build build --target install
+        cmake --build build --target install --parallel 2
 
     - name: Create & configure build directory
       run: |
         mkdir build && cd build
         cmake \
-        -DVTK_DIR=/usr/local/vtk-9.3 \
+        -DVTK_DIR=$GITHUB_WORKSPACE/VTK-9.3.0.rc2/build/install \
         -DCMAKE_BUILD_TYPE=Release \
         $GITHUB_WORKSPACE
 
