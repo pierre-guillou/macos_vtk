@@ -23,7 +23,7 @@ jobs:
         cd VTK-9.3.0.rc2
         mkdir build && cd build
         cmake \
-        -DCMAKE_INSTALL_PREFIX=$PWD/install \
+        -DCMAKE_INSTALL_PREFIX=/usr/local/vtk-9.3 \
         -DCMAKE_BUILD_TYPE=Debug \
         ..
 
@@ -31,13 +31,13 @@ jobs:
       run: |
         cd VTK-9.3.0.rc2
         cmake --build build --parallel 2
-        cmake --install build
+        sudo cmake --install build
 
     - name: Create & configure build directory
       run: |
         mkdir build && cd build
         cmake \
-        -DVTK_DIR=$GITHUB_WORKSPACE/VTK-9.3.0.rc2/build/install/lib/cmake/vtk-9.3 \
+        -DVTK_DIR=/usr/local/vtk-9.3 \
         -DCMAKE_BUILD_TYPE=Release \
         $GITHUB_WORKSPACE
 
