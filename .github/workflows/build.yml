@@ -37,7 +37,7 @@ jobs:
       run: |
         mkdir build && cd build
         cmake \
-        -DVTK_DIR=$GITHUB_WORKSPACE/VTK-9.3.0.rc2/build/install \
+        -DVTK_DIR=$GITHUB_WORKSPACE/VTK-9.3.0.rc2/build/install/lib/cmake/vtk-9.3 \
         -DCMAKE_BUILD_TYPE=Release \
         $GITHUB_WORKSPACE
 
